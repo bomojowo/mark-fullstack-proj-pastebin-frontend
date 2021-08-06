@@ -1,41 +1,76 @@
-import './InputPaste.css'
-import { useState } from 'react';
+import "./InputPaste.css";
+import { useState } from "react";
 // export interface InputPasteProps {
 //     code: string
 //     setCode: React.Dispatch<React.SetStateAction<string | undefined>>
 // }
 
 export function InputPaste(): JSX.Element {
-    const [description, setDescription] = useState<string>("")
-    const [code, setCode] = useState<string>("")
+const [user_name, setUser_name] = useState<string>("")
+  const [description, setDescription] = useState<string>("");
+  const [code, setCode] = useState<string>("");
 
-    function storeCode (){
-        //send info to post /pastes endpoint
-        //console.log('testing the store button')
-        console.log(code, description)
+  async function storeCode () {
+    console.log(user_name, description, code);
+    //send info to post /pastes endpoint
+    const apiBaseURL = process.env.REACT_APP_API_BASE
+    const response = await fetch(apiBaseURL + '/pastes', 
+        {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify({user_name, description, code})
+        })
+        console.log(await response.text())
+  }
+  return (
+    <div className="input-form">
+      {
+        <form>
+            <label>
+            Username:
+            <input
+              type="text"
+              name="name"
+              value={user_name}
+              onChange={(e) => {
+                setUser_name(e.target.value);
+              }}
+            />
+          </label>
+          <br />
 
+          <label>
+            Description:
+            <input
+              type="text"
+              name="name"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            />
+          </label>
+          <br />
+
+          <label>
+            Code:
+            <input
+              type="text"
+              name="name"
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value);
+              }}
+            />
+          </label>
+          <br />
+        </form>
       }
-  return <div className="input-form">
-      
-      {<form>
-          <label>
-              Description:
-              <input type="text" name="name" value={description} onChange={(e) => {setDescription(e.target.value)}}/>
-          </label>
-          <br/>
-          
-          <label>
-              Code:
-              <input type="text" name="name" value={code} onChange={(e) => {setCode(e.target.value)}}/>
-          </label>
-          <br/>
-          
-          </form>}
-          <br/>
+      <br />
       {<button onClick={storeCode}>Submit</button>}
-      <hr/>
-      Description output
-      <br/>
       
-  </div>;
+    </div>
+  );
 }
