@@ -1,35 +1,32 @@
 import React, { useState } from "react";
 import "./App.css";
 import { InputPaste } from "./components/InputPaste";
-
+import {GetPastes } from "./components/GetPastes"
 function App() {
-  const [data, setData] = useState<string>()
-  const [paste, setPaste] = useState<string>()
+  const [data, setData] = useState<string[]>([])
+  // const [code, setCode] = useState<string>()
 
   //fetching form API
   const loadData = async () => {
     const apiBaseURL = process.env.REACT_APP_API_BASE;
     const response = await fetch(apiBaseURL + "/");
     const body = await response.json();
+    setData([...data, body.pastes[0].description])
     setData(body.pastes[1].pasted_text)
-    console.log(body.pastes[1].pasted_text);
+    console.log(body.pastes[0]);
   };
   
-
-  function storePaste (){
-    console.log('testing the store button')
-  }
 
   return (
     <div className="App">
       <h1>Paste Bin</h1>
-      <input placeholder="Paste your code" />
-      <button onClick={storePaste}>Save Paste</button>
+      <InputPaste/>
       <hr />
-      <button onClick={loadData}>Get Pastes</button>
-      <h3>GET pastes</h3>
+      <h3>GET previous pastes</h3>
+      {<button onClick={loadData}>Get Pastes</button>}
+      <br/>
       {data}
-      <InputPaste />
+      
       
     </div>
   );
