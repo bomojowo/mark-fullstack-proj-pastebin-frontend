@@ -11,16 +11,18 @@ interface getPastesProps {
 export function GetPastes(): JSX.Element {
   const [pastes, setPastes] = useState<getPastesProps[]>([]);
 
-  //get all info by hitting get /pastes endpoint
-  //display info
-
   async function getPastes() {
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    const response = await fetch(apiBaseURL + "/", {
+    const response = await fetch(apiBaseURL + "/pastes", {
       method: "GET",
     });
     const body = await response.json();
     setPastes(body.pastes);
+  }
+
+
+  function handlePostClick() {
+    alert('You have clicked this post')
   }
 
   return (
@@ -34,7 +36,7 @@ export function GetPastes(): JSX.Element {
       <div>
         {pastes &&
           pastes.map((paste) => (
-            <div className="get-pastes" key={paste.id}>
+            <div className="get-pastes" key={paste.id} onClick={handlePostClick}>
               <b>username:</b>
               {paste.user_name}
               <br />
