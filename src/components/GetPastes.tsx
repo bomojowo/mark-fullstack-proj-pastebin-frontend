@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./GetPastes.css";
 
 interface getPastesProps {
   user_name: string,
   description: string,
-  code: string
+  code: string,
+  id: number
 }
 
 export function GetPastes(): JSX.Element {
@@ -25,20 +26,11 @@ export function GetPastes(): JSX.Element {
   }
   
 
-  // useEffect(() => {
-  //   getPastes()
-  // },[])
-  // console.log(pastes[1])
-
   return <div>
-    {<button onClick={getPastes}>Get the pastes</button>}
+    {<button className="get-posts-btn"onClick={getPastes}>Get Posts Pastes</button>}
     <br/>
     <div>
-     {pastes && pastes.map(paste => <div className="get-pastes"><b>username:</b>{paste.user_name}<br/><b>description:</b>{paste.description}<br/><b>code:</b>{paste.code}</div>)}
-    {/* <br/>
-    <b>description:</b> {pastes && pastes.map(paste => <div>{paste.description}</div>)}
-    <br/>
-    <b>code:</b> {pastes && pastes.map(paste => <div>{paste.code}</div>)} */}
+     {pastes && pastes.map(paste => <div className="get-pastes" key={paste.id}><b>username:</b>{paste.user_name}<br/><b>description:</b>{paste.description}<br/><b>code:</b>{paste.code}</div>)}
     </div>
   </div>;
 }

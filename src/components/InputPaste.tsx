@@ -27,6 +27,7 @@ export function InputPaste(): JSX.Element {
             <label>
             Username:
             <input
+              className="form-input"
               type="text"
               name="name"
               value={user_name}
@@ -40,6 +41,7 @@ export function InputPaste(): JSX.Element {
           <label>
             Description:
             <input
+              className="form-input"
               type="text"
               name="name"
               value={description}
@@ -53,6 +55,7 @@ export function InputPaste(): JSX.Element {
           <label>
             Code:
             <input
+              className="form-input"
               type="text"
               name="name"
               value={code}
@@ -65,7 +68,7 @@ export function InputPaste(): JSX.Element {
         </form>
       }
       <br />
-      {<button onClick={storeCode}>Submit</button>}
+      {<button className="form-submit-btn"onClick={storeCode}>Submit</button>}
       
     </div>
   );

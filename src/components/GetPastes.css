@@ -1,7 +1,13 @@
 .get-pastes{
-    border-color: black;
+  border-color: gray;
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
   margin-top: 10px;
+  background-color: lightgray;
 }
+
+.get-posts-btn {
+    border-radius: 10px;
+    padding: 5px;
+  }

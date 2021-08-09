@@ -1,6 +1,19 @@
 .input-form {
-  border-color: black;
+  border-color: gray;
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
+  background-color: lightgray;
+}
+
+.form-input {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.form-submit-btn {
+  border-radius: 10px;
+  padding: 5px
 }
