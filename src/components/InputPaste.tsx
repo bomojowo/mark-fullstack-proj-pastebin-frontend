@@ -1,12 +1,8 @@
 import "./InputPaste.css";
 import { useState } from "react";
-// export interface InputPasteProps {
-//     code: string
-//     setCode: React.Dispatch<React.SetStateAction<string | undefined>>
-// }
 
 export function InputPaste(): JSX.Element {
-const [user_name, setUser_name] = useState<string>("")
+  const [user_name, setUser_name] = useState<string>("")
   const [description, setDescription] = useState<string>("");
   const [code, setCode] = useState<string>("");
 
