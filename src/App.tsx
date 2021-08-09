@@ -2,6 +2,7 @@
 import "./App.css";
 import { InputPaste } from "./components/InputPaste";
 import { GetPastes } from "./components/GetPastes";
+import {ModalBox} from "./components/ModalBox"
 function App() {
   return (
     <div className="App">
@@ -9,6 +10,8 @@ function App() {
       <InputPaste />
       <hr />
       <GetPastes />
+      <hr/>
+      {/* <ModalBox /> */}
     </div>
   );
 }
