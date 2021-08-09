@@ -1,4 +1,4 @@
-.get-pastes{
+.get-pastes {
   border-color: gray;
   border-style: solid;
   border-radius: 10px;
@@ -8,6 +8,6 @@
 }
 
 .get-posts-btn {
-    border-radius: 10px;
-    padding: 5px;
-  }
+  border-radius: 10px;
+  padding: 5px;
+}

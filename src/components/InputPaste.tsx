@@ -2,29 +2,28 @@ import "./InputPaste.css";
 import { useState } from "react";
 
 export function InputPaste(): JSX.Element {
-  const [user_name, setUser_name] = useState<string>("")
+  const [user_name, setUser_name] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [code, setCode] = useState<string>("");
 
-  async function storeCode () {
+  async function storeCode() {
     console.log(user_name, description, code);
     //send info to post /pastes endpoint
-    const apiBaseURL = process.env.REACT_APP_API_BASE
-    const response = await fetch(apiBaseURL + '/pastes', 
-        {
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body:JSON.stringify({user_name, description, code})
-        })
-        console.log(await response.text())
+    const apiBaseURL = process.env.REACT_APP_API_BASE;
+    const response = await fetch(apiBaseURL + "/pastes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_name, description, code }),
+    });
+    console.log(await response.text());
   }
   return (
     <div className="input-form">
       {
         <form>
-            <label>
+          <label>
             Username:
             <input
               className="form-input"
@@ -68,8 +67,11 @@ export function InputPaste(): JSX.Element {
         </form>
       }
       <br />
-      {<button className="form-submit-btn"onClick={storeCode}>Submit</button>}
-      
+      {
+        <button className="form-submit-btn" onClick={storeCode}>
+          Submit
+        </button>
+      }
     </div>
   );
 }
