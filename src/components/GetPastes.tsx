@@ -29,7 +29,7 @@ export function GetPastes(): JSX.Element {
     <div>
       {
         <button className="get-posts-btn" onClick={getPastes}>
-          Get Posts Pastes
+          Public Posts
         </button>
       }
       <br />

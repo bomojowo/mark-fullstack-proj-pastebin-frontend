@@ -21,6 +21,7 @@ export function InputPaste(): JSX.Element {
   }
   return (
     <div className="input-form">
+      <h3>Add Paste</h3>
       {
         <form>
           <label>
