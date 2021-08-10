@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {EditPastes} from "./EditPastes";
+import { EditPastes } from "./EditPastes";
 import "./GetPastes.css";
 
 export interface getPastesProps {
@@ -7,7 +7,6 @@ export interface getPastesProps {
   description: string;
   code: string;
   id: number;
-  
 }
 
 export function GetPastes(): JSX.Element {
@@ -57,19 +56,16 @@ export function GetPastes(): JSX.Element {
               {paste.code}
               <br />
               <button onClick={handlePostClick}>Show More</button>
-              
+
               <button
                 className="delete-btn"
                 onClick={() => handlePostDelete(paste.id)}
               >
                 Delete
               </button>
-              <EditPastes paste={paste}/>
-           
-              
+              <EditPastes paste={paste} />
             </div>
           ))}
-          
       </div>
     </div>
   );

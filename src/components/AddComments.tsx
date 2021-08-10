@@ -1,7 +1,3 @@
-export function AddComments(){
-    return(
-        <div>
-            hi
-        </div>
-    )
+export function AddComments() {
+  return <div>hi</div>;
 }
