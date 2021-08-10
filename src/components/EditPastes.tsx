@@ -14,10 +14,10 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
 
   function handleClose() {
     setShow(false);
+    setCode(code)
   }
 
   function handleShow() {
-    setCode(paste.code);
     setShow(true);
   }
 
@@ -25,6 +25,7 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
 
   async function updateCode(id: number) {
     try {
+        
       const body = { code };
       const apiBaseURL = process.env.REACT_APP_API_BASE;
       await fetch(apiBaseURL + `/pastes/${paste.id}`, {
@@ -34,8 +35,8 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
         },
         body: JSON.stringify(body),
       });
+      handleClose()
 
-      window.location.reload(false);
     } catch (err) {
       console.log(err.message);
     }
