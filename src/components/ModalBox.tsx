@@ -1,10 +1,10 @@
-import "./ModalBox.css"
+import "./ModalBox.css";
 
-export function ModalBox(): JSX.Element{
-    return (
-        <div>
-            hi there
-           {/* <div className="modal">
+export function ModalBox(): JSX.Element {
+  return (
+    <div>
+      hi there
+      {/* <div className="modal">
                <div className="modal-content">
                 <div className="modal-header">
                     <h4 className="modal-title"> Modal Title
@@ -18,6 +18,6 @@ export function ModalBox(): JSX.Element{
                 </div>
                </div>
             </div>  */}
-        </div>
-    )
+    </div>
+  );
 }
