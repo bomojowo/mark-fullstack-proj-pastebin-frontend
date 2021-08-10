@@ -1,11 +1,13 @@
 import { useState } from "react";
+import {EditPastes} from "./EditPastes";
 import "./GetPastes.css";
 
-interface getPastesProps {
+export interface getPastesProps {
   user_name: string;
   description: string;
   code: string;
   id: number;
+  
 }
 
 export function GetPastes(): JSX.Element {
@@ -20,21 +22,19 @@ export function GetPastes(): JSX.Element {
     setPastes(body.pastes);
   }
 
-
   function handlePostClick() {
-    alert('You have clicked this post')
+    alert("You have clicked this post");
   }
 
-  async function handlePostDelete(id: number){
+  async function handlePostDelete(id: number) {
     //deletes post
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    const deletePost = await fetch(apiBaseURL + `/pastes/${id}`,{
+    const deletePost = await fetch(apiBaseURL + `/pastes/${id}`, {
       method: "DELETE",
-    })
-    setPastes(pastes.filter((pastes) => pastes.id !== id))
+    });
+    setPastes(pastes.filter((pastes) => pastes.id !== id));
   }
 
- 
   return (
     <div>
       {
@@ -55,14 +55,22 @@ export function GetPastes(): JSX.Element {
               <br />
               <b>code:</b>
               {paste.code}
-              <br/>
+              <br />
               <button onClick={handlePostClick}>Show More</button>
-              <button className="edit-btn">Edit Paste</button>
-              <button className="delete-btn" onClick={() => handlePostDelete(paste.id)}>Delete</button>
+              
+              <button
+                className="delete-btn"
+                onClick={() => handlePostDelete(paste.id)}
+              >
+                Delete
+              </button>
+              <EditPastes paste={paste}/>
+           
+              
             </div>
           ))}
+          
       </div>
-      
     </div>
   );
 }
