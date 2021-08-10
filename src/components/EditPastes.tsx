@@ -27,7 +27,7 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
     try {
       const body = { code };
       const apiBaseURL = process.env.REACT_APP_API_BASE;
-      const response = await fetch(apiBaseURL + `/pastes/${paste.id}`, {
+      await fetch(apiBaseURL + `/pastes/${paste.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -28,7 +28,7 @@ export function GetPastes(): JSX.Element {
   async function handlePostDelete(id: number) {
     //deletes post
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    const deletePost = await fetch(apiBaseURL + `/pastes/${id}`, {
+    await fetch(apiBaseURL + `/pastes/${id}`, {
       method: "DELETE",
     });
     setPastes(pastes.filter((pastes) => pastes.id !== id));
