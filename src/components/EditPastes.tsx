@@ -12,15 +12,14 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
   const [code, setCode] = useState<string>(paste.code);
   const [show, setShow] = useState(false);
 
-  function handleClose(){
-      setShow(false)
-        
-    };
+  function handleClose() {
+    setShow(false);
+  }
 
-  function handleShow(){
-    setCode(paste.code)
-    setShow(true)
-  };
+  function handleShow() {
+    setCode(paste.code);
+    setShow(true);
+  }
 
   //edit code function
 
@@ -48,7 +47,11 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
         Edit Paste
       </Button>
 
-      <Modal show={show} onHide={handleClose} onClick={() => setCode(paste.code)}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        onClick={() => setCode(paste.code)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Paste Title</Modal.Title>
         </Modal.Header>
