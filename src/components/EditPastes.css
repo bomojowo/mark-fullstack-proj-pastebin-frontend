@@ -1,0 +1,11 @@
+.edit-btn{
+    background-color: white;
+    border-color: black;
+    color:black;
+    border-radius: 0%;
+    padding: 2px;
+}
+
+.edit-btn:hover{
+    color: white;
+}
