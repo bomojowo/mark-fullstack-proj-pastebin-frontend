@@ -15,6 +15,7 @@ export function AddComments():JSX.Element {
     const handleShow = () => setShow(true);
 
 //getcomment function
+//need to join commentdb with pastebindb to get back specific comment for each id
   async function getComments() {
     const apiBaseURL = process.env.REACT_APP_API_BASE;
     const response = await fetch(apiBaseURL + "/pastes/:paste_id/comments", {
