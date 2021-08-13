@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddComments } from "./AddComments";
 import { EditPastes } from "./EditPastes";
 import "./GetPastes.css";
 
@@ -6,7 +7,7 @@ export interface getPastesProps {
   user_name: string;
   description: string;
   code: string;
-  id: number;
+  paste_id: number;
 }
 
 export function GetPastes(): JSX.Element {
@@ -25,13 +26,13 @@ export function GetPastes(): JSX.Element {
     alert("You have clicked this post");
   }
 
-  async function handlePostDelete(id: number) {
+  async function handlePostDelete(paste_id: number) {
     //deletes post
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    await fetch(apiBaseURL + `/pastes/${id}`, {
+    await fetch(apiBaseURL + `/pastes/${paste_id}`, {
       method: "DELETE",
     });
-    setPastes(pastes.filter((pastes) => pastes.id !== id));
+    setPastes(pastes.filter((pastes) => pastes.paste_id !== paste_id));
   }
 
   return (
@@ -45,7 +46,7 @@ export function GetPastes(): JSX.Element {
       <div>
         {pastes &&
           pastes.map((paste) => (
-            <div className="get-pastes" key={paste.id}>
+            <div className="get-pastes" key={paste.paste_id}>
               <b>username:</b>
               {paste.user_name}
               <br />
@@ -59,11 +60,12 @@ export function GetPastes(): JSX.Element {
 
               <button
                 className="delete-btn"
-                onClick={() => handlePostDelete(paste.id)}
+                onClick={() => handlePostDelete(paste.paste_id)}
               >
                 Delete
               </button>
-              <EditPastes paste={paste} />
+              <EditPastes paste={paste} getPastes={getPastes} />
+              <AddComments paste={paste}/>
             </div>
           ))}
       </div>

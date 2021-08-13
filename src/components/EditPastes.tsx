@@ -5,9 +5,10 @@ import { getPastesProps } from "./GetPastes";
 
 interface editPasteProps {
   paste: getPastesProps;
+  getPastes: () => Promise<void>
 }
 
-export function EditPastes({ paste }: editPasteProps): JSX.Element {
+export function EditPastes({ paste, getPastes }: editPasteProps): JSX.Element {
   //console.log(paste)
   const [code, setCode] = useState<string>(paste.code);
   const [show, setShow] = useState(false);
@@ -22,20 +23,21 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
   }
 
   //edit code function
-
-  async function updateCode(id: number) {
+  async function updateCode(paste_id: number) {
     try {
         
       const body = { code };
       const apiBaseURL = process.env.REACT_APP_API_BASE;
-      await fetch(apiBaseURL + `/pastes/${paste.id}`, {
+      await fetch(apiBaseURL + `/pastes/${paste.paste_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
+      getPastes()
       handleClose()
+
 
     } catch (err) {
       console.log(err.message);
@@ -65,7 +67,7 @@ export function EditPastes({ paste }: editPasteProps): JSX.Element {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => updateCode(paste.id)}>
+          <Button variant="primary" onClick={() => updateCode(paste.paste_id)}>
             Save Changes
           </Button>
         </Modal.Footer>
