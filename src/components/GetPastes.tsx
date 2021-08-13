@@ -65,7 +65,7 @@ export function GetPastes(): JSX.Element {
                 Delete
               </button>
               <EditPastes paste={paste} getPastes={getPastes} />
-              <AddComments paste={paste}/>
+              <AddComments />
             </div>
           ))}
       </div>
