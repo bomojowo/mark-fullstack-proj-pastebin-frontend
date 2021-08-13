@@ -1,21 +1,21 @@
 //import { getPastesProps } from "./GetPastes"
-import { Modal, Button } from "react-bootstrap"
-import {useState} from 'react'
+import { Modal, Button } from "react-bootstrap";
+import { useState } from "react";
 
 export interface AddCommentsProps {
-   comment: string
-  }
+  comment: string;
+}
 
-export function AddComments():JSX.Element {
-    const [showComments, setShowComments] = useState<AddCommentsProps[]>([]);
+export function AddComments(): JSX.Element {
+  const [showComments, setShowComments] = useState<AddCommentsProps[]>([]);
 
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-//getcomment function
-//need to join commentdb with pastebindb to get back specific comment for each id
+  //getcomment function
+  //need to join commentdb with pastebindb to get back specific comment for each id
   async function getComments() {
     const apiBaseURL = process.env.REACT_APP_API_BASE;
     const response = await fetch(apiBaseURL + "/pastes/:paste_id/comments", {
@@ -24,26 +24,22 @@ export function AddComments():JSX.Element {
     const body = await response.json();
     setShowComments(body.showComments);
   }
+  //testing button works
+  function handleSaveComment() {
+    handleClose();
+    console.log("Comment saved");
+  }
+  //testing button works
+  function handleAddComment() {
+    console.log("Comment Added");
+  }
 
-  function handleSaveComment(){
-      handleClose()
-    console.log('Comment saved')
-    }
+  //postcomment function
 
-    function handleAddComment() {
-        console.log('Comment Added')
-    }
-
-    //postcomment function
-
-    
-
-    //deletecomment function
-
+  //deletecomment function
 
   return (
     <>
-    {/* <button onClick={() => handleComment()}>Comment</button> */}
       <Button variant="primary" onClick={handleShow}>
         See comments
       </Button>
@@ -53,25 +49,22 @@ export function AddComments():JSX.Element {
           <Modal.Title>Comments</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            Add comment: <input/>
-            <button onClick={handleAddComment}>Add comment</button>
-            <hr/>
-            <button onClick={getComments}>Show Previous Comments</button>
-            <br/>
-            
-            <ul>
-                <li>
-                    Able to delete a comment
-                </li>
-            </ul>
-            {showComments && showComments.map((comment) => (
-                <div>
-                    <b>comment:</b>
-                    {comment.comment}
-                </div>
+          Add comment: <input />
+          <button onClick={handleAddComment}>Add comment</button>
+          <hr />
+          <button onClick={getComments}>Show Previous Comments</button>
+          <br />
+          <ul>
+            <li>Able to delete a comment</li>
+          </ul>
+          {showComments &&
+            showComments.map((comment) => (
+              <div>
+                <b>comment:</b>
+                {comment.comment}
+              </div>
             ))}
-            
-            </Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -83,5 +76,4 @@ export function AddComments():JSX.Element {
       </Modal>
     </>
   );
-
 }

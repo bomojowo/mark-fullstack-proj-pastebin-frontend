@@ -5,7 +5,7 @@ import { getPastesProps } from "./GetPastes";
 
 interface editPasteProps {
   paste: getPastesProps;
-  getPastes: () => Promise<void>
+  getPastes: () => Promise<void>;
 }
 
 export function EditPastes({ paste, getPastes }: editPasteProps): JSX.Element {
@@ -15,7 +15,7 @@ export function EditPastes({ paste, getPastes }: editPasteProps): JSX.Element {
 
   function handleClose() {
     setShow(false);
-    setCode(code)
+    setCode(code);
   }
 
   function handleShow() {
@@ -25,7 +25,6 @@ export function EditPastes({ paste, getPastes }: editPasteProps): JSX.Element {
   //edit code function
   async function updateCode(paste_id: number) {
     try {
-        
       const body = { code };
       const apiBaseURL = process.env.REACT_APP_API_BASE;
       await fetch(apiBaseURL + `/pastes/${paste.paste_id}`, {
@@ -35,10 +34,8 @@ export function EditPastes({ paste, getPastes }: editPasteProps): JSX.Element {
         },
         body: JSON.stringify(body),
       });
-      getPastes()
-      handleClose()
-
-
+      getPastes();
+      handleClose();
     } catch (err) {
       console.log(err.message);
     }
