@@ -20,11 +20,13 @@ export function GetPastes(): JSX.Element {
     });
     const body = await response.json();
     setPastes(body.pastes);
+    console.log(body)
+    console.log(pastes)
   }
 
-  function handlePostClick() {
-    alert("You have clicked this post");
-  }
+  // function handlePostClick() {
+  //   alert("You have clicked this post");
+  // }
 
   async function handlePostDelete(paste_id: number) {
     //deletes post
@@ -33,6 +35,7 @@ export function GetPastes(): JSX.Element {
       method: "DELETE",
     });
     setPastes(pastes.filter((pastes) => pastes.paste_id !== paste_id));
+    console.log()
   }
 
   return (
@@ -56,7 +59,7 @@ export function GetPastes(): JSX.Element {
               <b>code:</b>
               {paste.code}
               <br />
-              <button onClick={handlePostClick}>Show More</button>
+              {/* <button className="show-more-btn"onClick={handlePostClick}>Show More</button> */}
 
               <button
                 className="delete-btn"

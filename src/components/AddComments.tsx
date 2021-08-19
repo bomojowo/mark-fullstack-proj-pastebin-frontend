@@ -6,13 +6,19 @@ import "./AddComments.css";
 
 export interface AddCommentsProps {
   paste: getPastesProps
+  
 }
 
+export interface getCommentsProps{
+    comment_id: number,
+    comment: string,
+    paste_id: number
+}
 
 export function AddComments({paste}: AddCommentsProps): JSX.Element {
 
     const [comment, setComment] = useState<string>()
-  const [showComments, setShowComments] = useState<AddCommentsProps[]>([]);
+  const [showComments, setShowComments] = useState<getCommentsProps[]>([]);
 
   const [show, setShow] = useState(false);
 
@@ -21,14 +27,17 @@ export function AddComments({paste}: AddCommentsProps): JSX.Element {
 
   //getcomment function
   //need to join commentdb with pastebindb to get back specific comment for each id
-  async function getComments() {
+  async function getComments(){
     const apiBaseURL = process.env.REACT_APP_API_BASE;
     const response = await fetch(apiBaseURL + `/pastes/${paste.paste_id}/comments`, {
       method: "GET",
     });
     const body = await response.json();
-    setShowComments(body.showComments);
+    setShowComments(body.comments);
+    console.log(showComments)
+    console.log(body)
   }
+
   //testing button works
   function handleSaveComment() {
     handleClose();
@@ -37,7 +46,6 @@ export function AddComments({paste}: AddCommentsProps): JSX.Element {
   //testing button works
   function handleAddComment() {
       postComments()
-    console.log("Comment Added");
   }
 
   //postcomment function
@@ -55,12 +63,14 @@ export function AddComments({paste}: AddCommentsProps): JSX.Element {
     console.log(response)
     const status = await response.text()
     console.log(status)
-    // const body = await response.json();
-    // setShowComments(body.showComments);
+    
   } 
   
 
   //deletecomment function
+  function handleDeleteComment(){
+      console.log('Comment deleted')
+  }
 
   return (
     <>
@@ -78,16 +88,15 @@ export function AddComments({paste}: AddCommentsProps): JSX.Element {
           <hr />
           <button onClick={getComments}>Show Previous Comments</button>
           <br />
-          <ul>
-            <li>Able to delete a comment</li>
-          </ul>
-          {showComments &&
-            showComments.map((comment) => (
-              <div>
-                <b>comment:</b>
-                {/* {comment.comment} */}
-              </div>
-            ))}
+          {showComments.map((comment) => (
+              <div key={comment.comment_id}>
+              <ul>
+              <li>{comment.comment}
+              <button onClick={handleDeleteComment}>❌</button>
+              </li>
+              </ul>
+            </div>
+          ))}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
