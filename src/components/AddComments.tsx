@@ -2,6 +2,7 @@
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
 import { getPastesProps } from "./GetPastes";
+import "./AddComments.css";
 
 export interface AddCommentsProps {
   paste: getPastesProps
@@ -63,7 +64,7 @@ export function AddComments({paste}: AddCommentsProps): JSX.Element {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="see-commonets-btn" variant="primary" onClick={handleShow}>
         See comments
       </Button>
 
