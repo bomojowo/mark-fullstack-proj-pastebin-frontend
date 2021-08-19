@@ -22,6 +22,7 @@
 
 .delete-btn:hover {
   background-color: blue;
+  color: white
 }
 
 .edit-btn {
