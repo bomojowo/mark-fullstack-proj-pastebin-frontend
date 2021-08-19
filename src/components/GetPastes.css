@@ -24,15 +24,14 @@
   background-color: blue;
 }
 
-
 .edit-btn {
   margin: 10px;
 }
 
 .show-more-btn {
   background-color: white;
-    border-color: black;
-    color: black;
-    border-radius: 0%;
-    padding: 2px;
+  border-color: black;
+  color: black;
+  border-radius: 0%;
+  padding: 2px;
 }

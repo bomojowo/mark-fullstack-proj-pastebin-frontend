@@ -20,8 +20,8 @@ export function GetPastes(): JSX.Element {
     });
     const body = await response.json();
     setPastes(body.pastes);
-    console.log(body)
-    console.log(pastes)
+    console.log(body);
+    console.log(pastes);
   }
 
   // function handlePostClick() {
@@ -35,7 +35,7 @@ export function GetPastes(): JSX.Element {
       method: "DELETE",
     });
     setPastes(pastes.filter((pastes) => pastes.paste_id !== paste_id));
-    console.log()
+    console.log();
   }
 
   return (
@@ -68,7 +68,7 @@ export function GetPastes(): JSX.Element {
                 Delete
               </button>
               <EditPastes paste={paste} getPastes={getPastes} />
-              <AddComments paste={paste}/>
+              <AddComments paste={paste} />
             </div>
           ))}
       </div>
