@@ -1,12 +1,16 @@
 //import { getPastesProps } from "./GetPastes"
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
+import { getPastesProps } from "./GetPastes";
 
 export interface AddCommentsProps {
-  comment: string;
+  paste: getPastesProps
 }
 
-export function AddComments(): JSX.Element {
+
+export function AddComments({paste}: AddCommentsProps): JSX.Element {
+
+    const [comment, setComment] = useState<string>()
   const [showComments, setShowComments] = useState<AddCommentsProps[]>([]);
 
   const [show, setShow] = useState(false);
@@ -18,7 +22,7 @@ export function AddComments(): JSX.Element {
   //need to join commentdb with pastebindb to get back specific comment for each id
   async function getComments() {
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    const response = await fetch(apiBaseURL + "/pastes/:paste_id/comments", {
+    const response = await fetch(apiBaseURL + `/pastes/${paste.paste_id}/comments`, {
       method: "GET",
     });
     const body = await response.json();
@@ -31,10 +35,29 @@ export function AddComments(): JSX.Element {
   }
   //testing button works
   function handleAddComment() {
+      postComments()
     console.log("Comment Added");
   }
 
   //postcomment function
+  async function postComments(){
+    const apiBaseURL = process.env.REACT_APP_API_BASE;
+    console.log(comment)
+    console.log(paste.paste_id)
+    const response = await fetch(apiBaseURL + `/pastes/${paste.paste_id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment }),
+    });
+    console.log(response)
+    const status = await response.text()
+    console.log(status)
+    // const body = await response.json();
+    // setShowComments(body.showComments);
+  } 
+  
 
   //deletecomment function
 
@@ -49,8 +72,8 @@ export function AddComments(): JSX.Element {
           <Modal.Title>Comments</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Add comment: <input />
-          <button onClick={handleAddComment}>Add comment</button>
+          Add comment: <input type="text" onChange={(e) => {setComment(e.target.value)}}/>
+          <button onClick={handleAddComment} >Add comment</button>
           <hr />
           <button onClick={getComments}>Show Previous Comments</button>
           <br />
@@ -61,7 +84,7 @@ export function AddComments(): JSX.Element {
             showComments.map((comment) => (
               <div>
                 <b>comment:</b>
-                {comment.comment}
+                {/* {comment.comment} */}
               </div>
             ))}
         </Modal.Body>
