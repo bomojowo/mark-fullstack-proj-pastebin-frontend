@@ -71,16 +71,23 @@ export function AddComments({ paste }: AddCommentsProps): JSX.Element {
   }
 
   //deletecomment function
-  
+
   async function handleDeleteComment(paste_id: number, comment_id: number) {
     //deletes post
     const apiBaseURL = process.env.REACT_APP_API_BASE;
-    const result = await fetch(apiBaseURL + `/pastes/${paste_id}/comments/${comment_id}`, {
-      method: "DELETE",
-    });
-    console.log(result.status)
-    setShowComments(showComments.filter((comment) => comment.comment_id !== comment_id));
-    console.log(showComments.filter((comment) => comment.comment_id !== comment_id));
+    const result = await fetch(
+      apiBaseURL + `/pastes/${paste_id}/comments/${comment_id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    console.log(result.status);
+    setShowComments(
+      showComments.filter((comment) => comment.comment_id !== comment_id)
+    );
+    console.log(
+      showComments.filter((comment) => comment.comment_id !== comment_id)
+    );
   }
 
   return (
@@ -103,7 +110,6 @@ export function AddComments({ paste }: AddCommentsProps): JSX.Element {
             type="text"
             onChange={(e) => {
               setComment(e.target.value);
-              
             }}
           />
           <button onClick={handleAddComment}>Add comment</button>
@@ -115,7 +121,13 @@ export function AddComments({ paste }: AddCommentsProps): JSX.Element {
               <ul>
                 <li>
                   {comment.comment}
-                  <button onClick={() => handleDeleteComment(comment.paste_id, comment.comment_id)} >❌</button>
+                  <button
+                    onClick={() =>
+                      handleDeleteComment(comment.paste_id, comment.comment_id)
+                    }
+                  >
+                    ❌
+                  </button>
                 </li>
               </ul>
             </div>
