@@ -3,4 +3,4 @@
   publish = "build"
 
 [context.production.environment]
-  REACT_APP_API_BASE = "https://mark-fullstack-proj-pastebin.herokuapp.com/"
+  REACT_APP_API_BASE = "https://mark-fullstack-proj-pastebin.herokuapp.com"
